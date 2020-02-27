@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/Viper-mk-IV-fighter.obj</SourceFile>
-  <SourceTime>2009-05-26T03:30:35.96875-06:00</SourceTime>
-  <DestFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/Viper-mk-IV-fighter.xnb</DestFile>
-  <DestTime>2020-02-21T13:46:44.3732703-06:00</DestTime>
+  <SourceFile>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Models/Viper-mk-IV-fighter.obj</SourceFile>
+  <SourceTime>2020-02-26T21:26:55.9557299-06:00</SourceTime>
+  <DestFile>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/Viper-mk-IV-fighter.xnb</DestFile>
+  <DestTime>2020-02-26T21:34:02.0158081-06:00</DestTime>
   <Importer>OpenAssetImporter</Importer>
   <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
   <Processor>ModelProcessor</Processor>

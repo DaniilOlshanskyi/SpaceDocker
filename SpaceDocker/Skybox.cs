@@ -76,7 +76,7 @@ namespace SpaceDocker
                     effect.TextureEnabled = true;
                     effect.Texture = skyboxTexture;
                     effect.World = Matrix.CreateScale(100f) * transforms[mesh.ParentBone.Index];
-                    effect.View = Matrix.CreateLookAt(Game1.CameraPosition,
+                    effect.View = Matrix.CreateLookAt(MathConverter.Convert(Game1.cameraPositionBepu),
                         MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.modelRotationBepu.Up));
                     effect.Projection = Matrix.CreatePerspectiveFieldOfView(
                         MathHelper.ToRadians(45.0f), aspectRatio,

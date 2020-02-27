@@ -101,7 +101,7 @@ namespace SpaceDocker
                     effect.Alpha = 0.7f;
                     effect.PreferPerPixelLighting = true;
                     effect.World = MathConverter.Convert(physicsObject.WorldTransform);
-                    effect.View = Matrix.CreateLookAt(Game1.CameraPosition, MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.modelRotationBepu.Up));
+                    effect.View = Matrix.CreateLookAt(MathConverter.Convert(Game1.cameraPositionBepu), MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.modelRotationBepu.Up));
                     float aspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
                     float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
                     float nearClipPlane = 1;
