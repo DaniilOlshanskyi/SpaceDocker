@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/engine_2.wav</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/hyperspace_activate.wav</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/cube.fbx</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/p1_wedge.fbx</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/pixelspaceship.fbx</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/Viper-mk-IV-fighter.obj</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/moon.fbx</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/moonsurface.png</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Textures/starsky.jpg</File>
+    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Textures/wedge_p1_diff_v1.tga</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
