@@ -16,7 +16,7 @@ namespace SpaceDocker
         SpriteBatch spriteBatch;
         Model ship;
         float aspectRatio;
-        BEPUutilities.Vector3 modelVelocity= BEPUutilities.Vector3.Zero;
+        BEPUutilities.Vector3 modelVelocity = BEPUutilities.Vector3.Zero;
         Skybox skybox;
         List<Asteroid> asteroids = new List<Asteroid>();
 
@@ -165,6 +165,10 @@ namespace SpaceDocker
             //CameraPosition += modelVelocity;
             physCapsule.Position += modelVelocity;
             //physCapsule.LinearVelocity += modelVelocity;
+            physCapsule.OrientationMatrix = new BEPUutilities.Matrix3x3(
+                modelRotationBepu.M11, modelRotationBepu.M12, modelRotationBepu.M13,
+                modelRotationBepu.M21, modelRotationBepu.M22, modelRotationBepu.M23,
+                modelRotationBepu.M31, modelRotationBepu.M32, modelRotationBepu.M33);
             base.Update(gameTime);
             this.Services.GetService<Space>().Update();
         }
@@ -198,7 +202,7 @@ namespace SpaceDocker
                 modelRotationBepu = BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, 0.05f));
             }
             cameraPositionBepu = cameraPositionBepu + 1.5f * BEPUutilities.Vector3.Normalize(modelRotationBepu.Up);
-            //physCapsule.OrientationMatrix = modelRotationBepu;s
+            //physCapsule.OrientationMatrix = modelRotationBepu;
 
             foreach (ModelMesh mesh in ship.Meshes)
             {
@@ -218,7 +222,7 @@ namespace SpaceDocker
                         1.0f, 10000.0f);
                     */
                     effect.LightingEnabled = false;
-                    effect.World = Matrix.CreateScale(0.001f) * MathConverter.Convert(BEPUutilities.Matrix.Multiply(modelRotationBepu, physCapsule.WorldTransform));// MathConverter.Convert(physCapsule.WorldTransform);
+                    effect.World = Matrix.CreateScale(0.001f) * MathConverter.Convert(physCapsule.WorldTransform);//MathConverter.Convert(BEPUutilities.Matrix.Multiply(modelRotationBepu, physCapsule.WorldTransform));// MathConverter.Convert(physCapsule.WorldTransform);
                     effect.View = Matrix.CreateLookAt(MathConverter.Convert(cameraPositionBepu),
                         MathConverter.Convert(physCapsule.Position), MathConverter.Convert(modelRotationBepu.Up));
                     effect.Projection = Matrix.CreatePerspectiveFieldOfView(
