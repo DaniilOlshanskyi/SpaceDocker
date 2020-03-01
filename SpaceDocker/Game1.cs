@@ -16,7 +16,7 @@ namespace SpaceDocker
         SpriteBatch spriteBatch;
         Model ship;
         float aspectRatio;
-        Vector3 modelVelocity= Vector3.Zero;
+        BEPUutilities.Vector3 modelVelocity= BEPUutilities.Vector3.Zero;
         Skybox skybox;
         List<Asteroid> asteroids = new List<Asteroid>();
 
@@ -105,43 +105,20 @@ namespace SpaceDocker
             // TODO: Add your update logic here
 
             Services.GetService<Space>().Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            
-            if (keyState.IsKeyDown(Keys.Down))
-            {
-                CameraPosition = new Vector3(CameraPosition.X, CameraPosition.Y, CameraPosition.Z + (float) 0.3);
-            }
-
-            if (keyState.IsKeyDown(Keys.Up))
-            {
-                CameraPosition = new Vector3(CameraPosition.X, CameraPosition.Y, CameraPosition.Z - (float)0.3);
-            }
-
-            if (keyState.IsKeyDown(Keys.Left))
-            {
-                //Matrix rot = Matrix.CreateRotationY(MathHelper.ToRadians(5));
-                Matrix rot = Matrix.CreateFromYawPitchRoll(MathHelper.ToRadians(5), 0, 0);
-                CameraDirection = Vector3.Transform(CameraDirection, rot);
-            }
-
-            if (keyState.IsKeyDown(Keys.Right))
-            {
-                Matrix rot = Matrix.CreateFromYawPitchRoll(MathHelper.ToRadians(-5), 0, 0);
-                CameraDirection = Vector3.Transform(CameraDirection, rot);
-            }
 
             if (keyState.IsKeyDown(Keys.W))
             {
-                modelVelocity += Vector3.Normalize(ModelRotation.Forward) * 0.001f;
+                modelVelocity += BEPUutilities.Vector3.Normalize(modelRotationBepu.Forward) * 0.001f;
             }
 
             if (keyState.IsKeyDown(Keys.S))
             {
-                modelVelocity += Vector3.Normalize(ModelRotation.Backward) * 0.001f;
+                modelVelocity += BEPUutilities.Vector3.Normalize(modelRotationBepu.Backward) * 0.001f;
             }
 
             if (keyState.IsKeyDown(Keys.X))
             {
-                modelVelocity = modelVelocity * new Vector3(0.99f, 0.99f, 0.99f);
+                modelVelocity = modelVelocity * new BEPUutilities.Vector3(0.99f, 0.99f, 0.99f);
             }
 
 
@@ -184,10 +161,10 @@ namespace SpaceDocker
             }
 
 
-            modelPosition += modelVelocity;
-            CameraPosition += modelVelocity;
-            //physCapsule.Position += MathConverter.Convert(modelVelocity);
-            //physCapsule.LinearVelocity += MathConverter.Convert(modelVelocity);
+            //modelPosition += modelVelocity;
+            //CameraPosition += modelVelocity;
+            physCapsule.Position += modelVelocity;
+            //physCapsule.LinearVelocity += modelVelocity;
             base.Update(gameTime);
             this.Services.GetService<Space>().Update();
         }
