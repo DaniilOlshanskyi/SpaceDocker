@@ -266,3 +266,4 @@ C:\UserFiles\Studying\SpaceDocker\SpaceDocker\obj\x86\Debug\SpaceDocker.csproj.C
 C:\UserFiles\Studying\SpaceDocker\SpaceDocker\obj\x86\Debug\SpaceDocker.csproj.CopyComplete
 C:\UserFiles\Studying\SpaceDocker\SpaceDocker\obj\x86\Debug\SpaceDocker.exe
 C:\UserFiles\Studying\SpaceDocker\SpaceDocker\obj\x86\Debug\SpaceDocker.pdb
+C:\Users\Daniil Olshanskyi\source\repos\SpaceDocker\SpaceDocker\bin\Windows\x86\Debug\Content\Models\cylinder.xnb

@@ -48,6 +48,7 @@ namespace SpaceDocker
             modelPosition = new Vector3(0, 0, -5);
 
             skybox = new Skybox(this, graphics.GraphicsDevice.Viewport.AspectRatio);
+            new Mothership(this, new Vector3(0, 0, -20f), "Mothership", 300f);
             new Asteroid(this, new Vector3(-2, 1.5f, -5), "A", 2, new Vector3(0.2f, 0, 0), new Vector3(0.3f, 0.5f, 0.5f));
             new Asteroid(this, new Vector3(2, 1.5f, -5), "B", 3, new Vector3(-0.2f, 0, 0), new Vector3(-0.5f, -0.6f, 0.2f));
             CameraPosition = new Vector3(0, 0, 0);
@@ -122,6 +123,12 @@ namespace SpaceDocker
             }
 
 
+            modelRotationBepu = new BEPUutilities.Matrix(
+                physCapsule.OrientationMatrix.M11, physCapsule.OrientationMatrix.M12, physCapsule.OrientationMatrix.M13, 0,
+                physCapsule.OrientationMatrix.M21, physCapsule.OrientationMatrix.M22, physCapsule.OrientationMatrix.M23, 0,
+                physCapsule.OrientationMatrix.M31, physCapsule.OrientationMatrix.M32, physCapsule.OrientationMatrix.M33, 0,
+                0, 0, 0, 1);
+
             float angularChange = 0.02f;
             if (keyState.IsKeyDown(Keys.A))
             {
@@ -165,10 +172,13 @@ namespace SpaceDocker
             //CameraPosition += modelVelocity;
             physCapsule.Position += modelVelocity;
             //physCapsule.LinearVelocity += modelVelocity;
+
             physCapsule.OrientationMatrix = new BEPUutilities.Matrix3x3(
                 modelRotationBepu.M11, modelRotationBepu.M12, modelRotationBepu.M13,
                 modelRotationBepu.M21, modelRotationBepu.M22, modelRotationBepu.M23,
                 modelRotationBepu.M31, modelRotationBepu.M32, modelRotationBepu.M33);
+
+            System.Console.WriteLine(physCapsule.Orientation);
             base.Update(gameTime);
             this.Services.GetService<Space>().Update();
         }

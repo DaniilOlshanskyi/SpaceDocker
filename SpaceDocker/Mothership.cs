@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace SpaceDocker
 {
-    internal class Asteroid : DrawableGameComponent
+    internal class Mothership : DrawableGameComponent
     {
         Vector3 modelPosition;
         Matrix ModelRotation;
         private Model model;
         private Texture2D moonTexture;
-        private BEPUphysics.Entities.Prefabs.Sphere physicsObject;
+        private BEPUphysics.Entities.Prefabs.Cylinder physicsObject;
         private Vector3 CurrentPosition
         {
             get
@@ -25,14 +25,15 @@ namespace SpaceDocker
             }
         }
 
-        public Asteroid(Game game) : base(game)
+        public Mothership(Game game) : base(game)
         {
             game.Components.Add(this);
         }
 
-        public Asteroid(Game game, Vector3 pos, string id) : this(game)
+        public Mothership(Game game, Vector3 pos, string id) : this(game)
         {
-            physicsObject = new BEPUphysics.Entities.Prefabs.Sphere(MathConverter.Convert(pos), 1);
+            physicsObject = new BEPUphysics.Entities.Prefabs.Cylinder(MathConverter.Convert(pos), 100, 20f);
+            physicsObject.Orientation = new BEPUutilities.Quaternion(0, 0, 0, 1);
             physicsObject.AngularDamping = 0f;
             physicsObject.LinearDamping = 0f;
             physicsObject.CollisionInformation.Events.InitialCollisionDetected += Events_InitialCollisionDetected;
@@ -42,20 +43,20 @@ namespace SpaceDocker
 
         private void Events_InitialCollisionDetected(BEPUphysics.BroadPhaseEntries.MobileCollidables.EntityCollidable sender, BEPUphysics.BroadPhaseEntries.Collidable other, BEPUphysics.NarrowPhaseSystems.Pairs.CollidablePairHandler pair)
         {
-            System.Console.WriteLine("bump"+ sender.Tag);
+            System.Console.WriteLine("bump" + sender.Tag);
         }
 
-        public Asteroid(Game game, Vector3 pos, string id, float mass) : this(game, pos, id)
+        public Mothership(Game game, Vector3 pos, string id, float mass) : this(game, pos, id)
         {
             physicsObject.Mass = mass;
         }
 
-        public Asteroid(Game game, Vector3 pos, string id, float mass, Vector3 linMomentum) : this(game, pos, id, mass)
+        public Mothership(Game game, Vector3 pos, string id, float mass, Vector3 linMomentum) : this(game, pos, id, mass)
         {
             physicsObject.LinearMomentum = MathConverter.Convert(linMomentum);
         }
 
-        public Asteroid(Game game, Vector3 pos, string id, float mass, Vector3 linMomentum, Vector3 angMomentum) : this(game, pos, id, mass, linMomentum)
+        public Mothership(Game game, Vector3 pos, string id, float mass, Vector3 linMomentum, Vector3 angMomentum) : this(game, pos, id, mass, linMomentum)
         {
             physicsObject.AngularMomentum = MathConverter.Convert(angMomentum);
         }
@@ -67,9 +68,9 @@ namespace SpaceDocker
 
         protected override void LoadContent()
         {
-            moonTexture = Game.Content.Load<Texture2D>("moonsurface");
-            model = Game.Content.Load<Model>("moon");
-            physicsObject.Radius = model.Meshes[0].BoundingSphere.Radius;
+            //moonTexture = Game.Content.Load<Texture2D>("moonsurface");
+            model = Game.Content.Load<Model>("Models\\cylinder");
+            //physicsObject.Radius = model.Meshes[0].BoundingSphere.Radius;
 
 
             base.LoadContent();
@@ -100,7 +101,7 @@ namespace SpaceDocker
                     */
                     effect.Alpha = 0.7f;
                     effect.PreferPerPixelLighting = true;
-                    effect.World = MathConverter.Convert(physicsObject.WorldTransform);
+                    effect.World = Matrix.CreateScale(physicsObject.Radius) * MathConverter.Convert(physicsObject.WorldTransform);
                     effect.View = Matrix.CreateLookAt(MathConverter.Convert(Game1.cameraPositionBepu), MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.modelRotationBepu.Up));
                     float aspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
                     float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
