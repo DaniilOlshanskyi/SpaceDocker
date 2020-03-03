@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+<<<<<<< HEAD
 "C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/engine_2.wav","C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Audio/engine_2.xnb","SoundEffectProcessor","SoundEffectContent",473204,473117,0.5024553
 "C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/hyperspace_activate.wav","C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Audio/hyperspace_activate.xnb","SoundEffectProcessor","SoundEffectContent",350336,350313,0.1311193
 "C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/cube.fbx","C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/cube.xnb","ModelProcessor","ModelContent",15356,1609,0.251228
@@ -11,3 +12,16 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Textures/starsky.jpg","C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Textures/starsky.xnb","TextureProcessor","Texture2DContent",72022,589909,0.0240218
 "C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/textures/wedge_p1_diff_v1.tga","C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/textures/wedge_p1_diff_v1_0.xnb","TextureProcessor","Texture2DContent",207530,87525,0.2922647
 "C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Textures/wedge_p1_diff_v1.tga","C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Textures/wedge_p1_diff_v1.xnb","TextureProcessor","Texture2DContent",207530,262229,0.0130123
+=======
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Audio/engine_2.wav","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Audio/engine_2.xnb","SoundEffectProcessor","SoundEffectContent",473204,473117,0.7587345
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Audio/hyperspace_activate.wav","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Audio/hyperspace_activate.xnb","SoundEffectProcessor","SoundEffectContent",350336,350313,0.16497
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Models/cube.fbx","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/cube.xnb","ModelProcessor","ModelContent",15356,1609,0.3663586
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Models/p1_wedge.fbx","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/p1_wedge.xnb","ModelProcessor","ModelContent",430896,389643,0.6936701
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Models/pixelspaceship.fbx","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/pixelspaceship.xnb","ModelProcessor","ModelContent",32908,5179,0.0478164
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Models/Viper-mk-IV-fighter.obj","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Models/Viper-mk-IV-fighter.xnb","ModelProcessor","ModelContent",23336744,6629419,3.295523
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/moon.fbx","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/moon.xnb","ModelProcessor","ModelContent",54076,25772,0.174533
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/moonsurface.png","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/moonsurface.xnb","TextureProcessor","Texture2DContent",172029,262229,0.0398936
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Textures/starsky.jpg","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Textures/starsky.xnb","TextureProcessor","Texture2DContent",72022,589909,0.0468916
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/textures/wedge_p1_diff_v1.tga","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/textures/wedge_p1_diff_v1_0.xnb","TextureProcessor","Texture2DContent",207530,87525,0.5365654
+"C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Textures/wedge_p1_diff_v1.tga","C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Textures/wedge_p1_diff_v1.xnb","TextureProcessor","Texture2DContent",207530,262229,0.0329123
+>>>>>>> 8a1a854168bd364e8ab41d6e551d8bfb40f60441
