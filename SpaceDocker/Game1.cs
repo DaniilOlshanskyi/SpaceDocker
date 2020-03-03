@@ -48,8 +48,8 @@ namespace SpaceDocker
             modelPosition = new Vector3(0, 0, -5);
 
             skybox = new Skybox(this, graphics.GraphicsDevice.Viewport.AspectRatio);
-            new Asteroid(this, new Vector3(-2, 1.5f, -5), "A", 2, new Vector3(0.2f, 0, 0), new Vector3(0.3f, 0.5f, 0.5f));
-            new Asteroid(this, new Vector3(2, 1.5f, -5), "B", 3, new Vector3(-0.2f, 0, 0), new Vector3(-0.5f, -0.6f, 0.2f));
+            new Asteroid(this, new Vector3(-2, 1.5f, -70), "A", 2, new Vector3(0.2f, 0, 0), new Vector3(0.3f, 0.5f, 0.5f));
+            new Asteroid(this, new Vector3(2, 1.5f, -70), "B", 3, new Vector3(-0.2f, 0, 0), new Vector3(-0.5f, -0.6f, 0.2f));
             CameraPosition = new Vector3(0, 0, 0);
             cameraPositionBepu = new BEPUutilities.Vector3(0, 0, 0);
             CameraDirection = Vector3.Forward;
@@ -73,6 +73,10 @@ namespace SpaceDocker
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ship = Content.Load<Model>("Models\\p1_wedge");
             physCapsule = new BEPUphysics.Entities.Prefabs.Capsule(MathConverter.Convert(modelPosition), 1.2f, 0.9f, 1f);
+            physCapsule.AngularDamping = 0f;
+            physCapsule.LinearDamping = 0f;
+            //physCapsule.LinearVelocity = BEPUutilities.Vector3.Zero;
+            //physCapsule.PositionUpdateMode = BEPUphysics.PositionUpdating.PositionUpdateMode.Passive;
             this.Services.GetService<Space>().Add(physCapsule);
             aspectRatio = graphics.GraphicsDevice.Viewport.AspectRatio;
             //background = Content.Load<Texture2D>("starsky");
@@ -106,69 +110,89 @@ namespace SpaceDocker
 
             Services.GetService<Space>().Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
+            BEPUutilities.Vector3 modelForwardMove = 0.1f * physCapsule.OrientationMatrix.Forward;
+            BEPUutilities.Vector3 modelBackwardMove = 0.1f * physCapsule.OrientationMatrix.Backward;
+
             if (keyState.IsKeyDown(Keys.W))
             {
-                modelVelocity += BEPUutilities.Vector3.Normalize(modelRotationBepu.Forward) * 0.001f;
+                //modelVelocity += BEPUutilities.Vector3.Normalize(modelRotationBepu.Forward) * 0.001f;
+                physCapsule.ApplyLinearImpulse(ref modelForwardMove);
             }
 
             if (keyState.IsKeyDown(Keys.S))
             {
-                modelVelocity += BEPUutilities.Vector3.Normalize(modelRotationBepu.Backward) * 0.001f;
+                //modelVelocity += BEPUutilities.Vector3.Normalize(modelRotationBepu.Backward) * 0.001f;
+                physCapsule.ApplyLinearImpulse(ref modelBackwardMove);
             }
 
             if (keyState.IsKeyDown(Keys.X))
             {
-                modelVelocity = modelVelocity * new BEPUutilities.Vector3(0.99f, 0.99f, 0.99f);
+                //modelVelocity = modelVelocity * new BEPUutilities.Vector3(0.99f, 0.99f, 0.99f);
             }
 
 
             float angularChange = 0.02f;
+            BEPUutilities.Vector3 modelUp = angularChange * physCapsule.OrientationMatrix.Up;
+            BEPUutilities.Vector3 modelUpNeg = -angularChange * physCapsule.OrientationMatrix.Up;
+            BEPUutilities.Vector3 modelBackward = angularChange * physCapsule.OrientationMatrix.Backward;
+            BEPUutilities.Vector3 modelBackwardNeg = -angularChange * physCapsule.OrientationMatrix.Backward;
+            BEPUutilities.Vector3 modelRight = angularChange * physCapsule.OrientationMatrix.Right;
+            BEPUutilities.Vector3 modelRightNeg = -angularChange * physCapsule.OrientationMatrix.Right;
             if (keyState.IsKeyDown(Keys.A))
             {
-                modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Up, angularChange));
+                physCapsule.ApplyAngularImpulse(ref modelUp);
+                //modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Up, angularChange));
                 ModelRotation *= Matrix.CreateFromAxisAngle(ModelRotation.Up, angularChange);
             }
 
             if (keyState.IsKeyDown(Keys.D))
             {
-                modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Up, -angularChange));
+                physCapsule.ApplyAngularImpulse(ref modelUpNeg);
+                //modelRotationBepu =BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Up, -angularChange));
                 ModelRotation *= Matrix.CreateFromAxisAngle(ModelRotation.Up, -angularChange);
             }
 
 
             if (keyState.IsKeyDown(Keys.Q))
             {
-                modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Backward, angularChange));
+                physCapsule.ApplyAngularImpulse(ref modelBackward);
+                //modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Backward, angularChange));
                 ModelRotation *= Matrix.CreateFromAxisAngle(ModelRotation.Backward, angularChange);
             }
 
             if (keyState.IsKeyDown(Keys.E))
             {
-                modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Backward, -angularChange));
+                physCapsule.ApplyAngularImpulse(ref modelBackwardNeg);
+                //modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Backward, -angularChange));
                 ModelRotation *= Matrix.CreateFromAxisAngle(ModelRotation.Backward, -angularChange);
             }
 
             if (keyState.IsKeyDown(Keys.Z))
             {
-                modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, angularChange));
+                physCapsule.ApplyAngularImpulse(ref modelRight);
+                //modelRotationBepu =BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, angularChange));
                 ModelRotation *= Matrix.CreateFromAxisAngle(ModelRotation.Right, angularChange);
             }
 
             if (keyState.IsKeyDown(Keys.C))
             {
-                modelRotationBepu=BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, -angularChange));
+                physCapsule.ApplyAngularImpulse(ref modelRightNeg);
+                //modelRotationBepu =BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, -angularChange));
                 ModelRotation *= Matrix.CreateFromAxisAngle(ModelRotation.Right, -angularChange);
             }
 
 
             //modelPosition += modelVelocity;
             //CameraPosition += modelVelocity;
-            physCapsule.Position += modelVelocity;
+            //physCapsule.Position += modelVelocity;
             //physCapsule.LinearVelocity += modelVelocity;
+            /*
             physCapsule.OrientationMatrix = new BEPUutilities.Matrix3x3(
                 modelRotationBepu.M11, modelRotationBepu.M12, modelRotationBepu.M13,
                 modelRotationBepu.M21, modelRotationBepu.M22, modelRotationBepu.M23,
                 modelRotationBepu.M31, modelRotationBepu.M32, modelRotationBepu.M33);
+                */
+            physCapsule.BecomeDynamic(1f);
             base.Update(gameTime);
             this.Services.GetService<Space>().Update();
         }
@@ -197,12 +221,19 @@ namespace SpaceDocker
             CameraPosition = CameraPosition + 1.5f*Vector3.Normalize(ModelRotation.Up);
             */
             cameraPositionBepu = physCapsule.Position + 5 * BEPUutilities.Vector3.Normalize(physCapsule.OrientationMatrix.Backward);
-            if (BEPUutilities.Vector3.Normalize(modelRotationBepu.Backward) == BEPUutilities.Vector3.Up)
+            if (BEPUutilities.Vector3.Normalize(physCapsule.OrientationMatrix.Backward) == BEPUutilities.Vector3.Up)
             {
-                modelRotationBepu = BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, 0.05f));
-            }
+                var modelRight = -0.01f * physCapsule.OrientationMatrix.Right;
+                physCapsule.ApplyAngularImpulse(ref modelRight);
+                //modelRotationBepu = BEPUutilities.Matrix.Multiply(modelRotationBepu, BEPUutilities.Matrix.CreateFromAxisAngle(modelRotationBepu.Right, 0.05f));
+            } 
             cameraPositionBepu = cameraPositionBepu + 1.5f * BEPUutilities.Vector3.Normalize(physCapsule.OrientationMatrix.Up);
             //physCapsule.OrientationMatrix = modelRotationBepu;
+
+            System.Console.WriteLine(ModelRotation);
+            System.Console.WriteLine(physCapsule.OrientationMatrix);
+
+
 
             foreach (ModelMesh mesh in ship.Meshes)
             {
@@ -224,7 +255,7 @@ namespace SpaceDocker
                     effect.LightingEnabled = false;
                     effect.World = Matrix.CreateScale(0.001f) * MathConverter.Convert(physCapsule.WorldTransform);//MathConverter.Convert(BEPUutilities.Matrix.Multiply(modelRotationBepu, physCapsule.WorldTransform));// MathConverter.Convert(physCapsule.WorldTransform);
                     effect.View = Matrix.CreateLookAt(MathConverter.Convert(cameraPositionBepu),
-                        MathConverter.Convert(physCapsule.Position), MathConverter.Convert(modelRotationBepu.Up));
+                        MathConverter.Convert(physCapsule.Position), MathConverter.Convert(physCapsule.OrientationMatrix.Up));
                     effect.Projection = Matrix.CreatePerspectiveFieldOfView(
                         MathHelper.ToRadians(45.0f), aspectRatio,
                         1.0f, 10000.0f);

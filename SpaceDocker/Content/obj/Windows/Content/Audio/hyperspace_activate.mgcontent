@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/hyperspace_activate.wav</SourceFile>
-  <SourceTime>2020-02-21T11:35:25.7985311-06:00</SourceTime>
-  <DestFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Audio/hyperspace_activate.xnb</DestFile>
-  <DestTime>2020-02-27T13:56:03.2279498-06:00</DestTime>
+  <SourceFile>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/Audio/hyperspace_activate.wav</SourceFile>
+  <SourceTime>2020-02-26T21:26:55.7373214-06:00</SourceTime>
+  <DestFile>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/Audio/hyperspace_activate.xnb</DestFile>
+  <DestTime>2020-03-03T10:57:15.9799648-06:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
