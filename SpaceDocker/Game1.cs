@@ -233,7 +233,7 @@ namespace SpaceDocker
             spriteBatch.End();
         }
         /// <summary>
-        /// Event to detect and process collision of the spaceship with something.
+        /// Event to detect and process collision of the spaceship with something and process mission completeness
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="other"></param>
