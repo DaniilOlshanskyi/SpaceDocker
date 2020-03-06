@@ -21,6 +21,7 @@ namespace SpaceDocker
         List<Asteroid> asteroids = new List<Asteroid>();
         SpriteBatch spriteBatch;
         SpriteFont dfont;
+        float speed = 0;
 
 
         public Game1()
@@ -73,6 +74,7 @@ namespace SpaceDocker
             physCapsule = new BEPUphysics.Entities.Prefabs.Capsule(MathConverter.Convert(modelPosition), 1.2f, 0.9f, 1f);
             physCapsule.AngularDamping = 0f;
             physCapsule.LinearDamping = 0f;
+            physCapsule.Tag = "Spaceship";
             // Assign a collision event to the physics object
             physCapsule.CollisionInformation.Events.InitialCollisionDetected += Events_InitialCollisionDetected;
             this.Services.GetService<Space>().Add(physCapsule);
@@ -157,6 +159,7 @@ namespace SpaceDocker
 
             // Rese the physics ship object to become dynamic again (since it may become static if not moving for some time)
             physCapsule.BecomeDynamic(1f);
+            speed = physCapsule.LinearVelocity.Length();
             base.Update(gameTime);
             this.Services.GetService<Space>().Update();
         }
@@ -203,24 +206,28 @@ namespace SpaceDocker
                 mesh.Draw();
             }
             base.Draw(gameTime);
+            // Draw info about current speed
             spriteBatch.Begin();
-            spriteBatch.DrawString(dfont, "Current speed:" + physCapsule.LinearVelocity.Length(), Vector2.Zero, Color.White);
+            spriteBatch.DrawString(dfont, "Current speed:" + speed+ " m/s", Vector2.Zero, Color.White);
+            spriteBatch.DrawString(dfont, "Land at <6 m/s! ", new Vector2(0,15), Color.White);
             spriteBatch.End();
         }
         /// <summary>
-        /// Event to detect collision of the spaceship with something.
+        /// Event to detect and process collision of the spaceship with something.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="other"></param>
         /// <param name="pair"></param>
         private void Events_InitialCollisionDetected(BEPUphysics.BroadPhaseEntries.MobileCollidables.EntityCollidable sender, BEPUphysics.BroadPhaseEntries.Collidable other, BEPUphysics.NarrowPhaseSystems.Pairs.CollidablePairHandler pair)
         {
-            if (physCapsule.LinearVelocity.Length() > 0.4f)
+            //System.Console.WriteLine(pair.EntityA.Tag);
+            //System.Console.WriteLine(pair.EntityB.Tag);
+            if (speed > 6)
             {
-                System.Console.WriteLine("BIG BUMP " + physCapsule.LinearVelocity.Length());
+                System.Console.WriteLine("BIG BUMP " + speed);
             } else
             {
-                System.Console.WriteLine("SMOOOOOOOOOL BUMP " + physCapsule.LinearVelocity.Length());
+                System.Console.WriteLine("SMOOOOOOOOOL BUMP " + speed);
             }
         }
     }
