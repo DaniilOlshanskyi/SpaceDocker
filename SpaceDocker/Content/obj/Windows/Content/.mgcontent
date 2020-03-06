@@ -4,14 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/engine_2.wav</File>
-    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Audio/hyperspace_activate.wav</File>
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/File.spritefont</File>
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/cube.fbx</File>
-    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/cylinder.fbx</File>
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/p1_wedge.fbx</File>
-    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/pixelspaceship.fbx</File>
-    <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/Viper-mk-IV-fighter.obj</File>
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/white_cube.fbx</File>
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/moon.fbx</File>
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/moonsurface.png</File>
@@ -20,11 +15,6 @@
     <File>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Textures/wedge_p1_diff_v1.tga</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

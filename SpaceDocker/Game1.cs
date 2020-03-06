@@ -22,6 +22,8 @@ namespace SpaceDocker
         SpriteBatch spriteBatch;
         SpriteFont dfont;
         float speed = 0;
+        bool goalReached = false;
+        bool goalReachedTooFast;
 
 
         public Game1()
@@ -44,15 +46,22 @@ namespace SpaceDocker
         {
             // TODO: Add your initialization logic here
             Services.AddService<Space>(new Space());
-            // modelPosition = new Vector3(0, 0, -5);
+            modelPosition = new Vector3(0, 0, -5);
 
             // Create skybox, mothership, and some randomly-generated asteroids
             skybox = new Skybox(this, graphics.GraphicsDevice.Viewport.AspectRatio);
             new Mothership(this, new Vector3(0,0,-200), "Mothership", 400f);
             Random rnd = new Random();
-            for (int i = 0; i<500; i++)
+            for (int i = 0; i<1000; i++)
             {
-                new Asteroid(this, new Vector3(rnd.Next(-100, 100), rnd.Next(-100, 100), rnd.Next(-100, 200)), "Asteroid_" + i, 3, new Vector3(rnd.Next(1, 3), rnd.Next(1, 3), rnd.Next(1, 3)),
+                Vector3 tempPos = new Vector3(rnd.Next(-100, 100), rnd.Next(-100, 100), rnd.Next(-200, 100));
+                while (tempPos.X > modelPosition.X - 2f && tempPos.X < modelPosition.X + 2f &&
+                    tempPos.Y > modelPosition.Y - 2f && tempPos.Y < modelPosition.Y + 2f &&
+                    tempPos.Z > modelPosition.Z - 2f && tempPos.Z < modelPosition.Z + 2f)
+                {
+                    tempPos = new Vector3(rnd.Next(-100, 100), rnd.Next(-100, 100), rnd.Next(-200, 100));
+                }
+                new Asteroid(this, tempPos, "Asteroid_" + i, 3, new Vector3(rnd.Next(1, 3), rnd.Next(1, 3), rnd.Next(1, 3)),
                    new Vector3((float)rnd.NextDouble() - 0.5f, (float)rnd.NextDouble() -0.5f, (float) rnd.NextDouble() - 0.5f));
             }
 
@@ -210,6 +219,17 @@ namespace SpaceDocker
             spriteBatch.Begin();
             spriteBatch.DrawString(dfont, "Current speed:" + speed+ " m/s", Vector2.Zero, Color.White);
             spriteBatch.DrawString(dfont, "Land at <6 m/s! ", new Vector2(0,15), Color.White);
+            if (goalReached)
+            {
+                spriteBatch.DrawString(dfont, "Goal reached!", new Vector2(350, 150), Color.Gold);
+                if (goalReachedTooFast)
+                {
+                    spriteBatch.DrawString(dfont, "Too fast - crash landing!", new Vector2(320, 165), Color.Red);
+                } else
+                {
+                    spriteBatch.DrawString(dfont, "Mission complete!", new Vector2(340, 165), Color.Red);
+                }
+            }
             spriteBatch.End();
         }
         /// <summary>
@@ -220,14 +240,17 @@ namespace SpaceDocker
         /// <param name="pair"></param>
         private void Events_InitialCollisionDetected(BEPUphysics.BroadPhaseEntries.MobileCollidables.EntityCollidable sender, BEPUphysics.BroadPhaseEntries.Collidable other, BEPUphysics.NarrowPhaseSystems.Pairs.CollidablePairHandler pair)
         {
-            //System.Console.WriteLine(pair.EntityA.Tag);
-            //System.Console.WriteLine(pair.EntityB.Tag);
-            if (speed > 6)
+            if (pair.EntityA.Tag.ToString() == "Mothership" || pair.EntityB.Tag.ToString() == "Mothership")
             {
-                System.Console.WriteLine("BIG BUMP " + speed);
-            } else
-            {
-                System.Console.WriteLine("SMOOOOOOOOOL BUMP " + speed);
+                goalReached = true;
+                if (speed > 6)
+                {
+                    goalReachedTooFast = true;
+                }
+                else
+                {
+                    goalReachedTooFast = false;
+                }
             }
         }
     }
