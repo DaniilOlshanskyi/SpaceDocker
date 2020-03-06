@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/moon.fbx</SourceFile>
-  <SourceTime>2020-02-26T21:26:56.3407343-06:00</SourceTime>
-  <DestFile>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/moon.xnb</DestFile>
-  <DestTime>2020-03-03T10:57:20.6007785-06:00</DestTime>
+  <SourceFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/moon.fbx</SourceFile>
+  <SourceTime>2020-02-20T17:53:28.4128831-06:00</SourceTime>
+  <DestFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/moon.xnb</DestFile>
+  <DestTime>2020-03-03T15:03:43.9399907-06:00</DestTime>
   <Importer>FbxImporter</Importer>
   <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
   <Processor>ModelProcessor</Processor>
@@ -66,7 +66,7 @@
   </Parameters>
   <Dependencies />
   <BuildAsset>
-    <string>C:/UserFiles/Studying/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/moonsurface_0.xnb</string>
+    <string>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Content/moonsurface_0.xnb</string>
   </BuildAsset>
   <BuildOutput />
 </PipelineBuildEvent>

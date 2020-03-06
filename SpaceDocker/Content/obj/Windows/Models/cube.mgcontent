@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/Models/cube.fbx</SourceFile>
   <SourceTime>2020-02-25T16:37:08.4121221-06:00</SourceTime>
   <DestFile>C:/Users/Daniil Olshanskyi/source/repos/SpaceDocker/SpaceDocker/Content/bin/Windows/Models/cube.xnb</DestFile>
-  <DestTime>2020-02-25T16:37:34.6721878-06:00</DestTime>
+  <DestTime>2020-03-04T16:30:25.7072643-06:00</DestTime>
   <Importer>FbxImporter</Importer>
   <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
   <Processor>ModelProcessor</Processor>

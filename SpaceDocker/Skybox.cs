@@ -12,8 +12,6 @@ namespace SpaceDocker
 {
     internal class Skybox : DrawableGameComponent
     {
-        //Vector3 modelPosition;
-        //Matrix ModelRotation;
         private Model skybox;
         private Texture2D skyboxTexture;
         float aspectRatio;
@@ -22,14 +20,6 @@ namespace SpaceDocker
         {
             game.Components.Add(this);
             this.aspectRatio = aspectRatio;
-            /*
-            physicsObject = new BEPUphysics.Entities.Prefabs.Sphere(MathConverter.Convert(Vector3.Zero), 500f);
-            physicsObject.AngularDamping = 0f;
-            physicsObject.LinearDamping = 0f;
-            //physicsObject.CollisionInformation.Events.InitialCollisionDetected += Events_InitialCollisionDetected;
-            physicsObject.Tag = 0;
-            Game.Services.GetService<Space>().Add(physicsObject);
-            */
         }
 
         public override void Initialize()
@@ -39,7 +29,6 @@ namespace SpaceDocker
 
         protected override void LoadContent()
         {
-            //moonTexture = Game.Content.Load<Texture2D>("Textures\\starsky");
             skyboxTexture = Game.Content.Load<Texture2D>("Textures\\starsky");
             skybox = Game.Content.Load<Model>("Models\\cube");
             base.LoadContent();
@@ -61,23 +50,13 @@ namespace SpaceDocker
                 // as our camera and projection.
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    /*
-                    effect.LightingEnabled = false;
-                    effect.TextureEnabled = true;
-                    effect.Texture = skyboxTexture;
-                    effect.World = Matrix.CreateScale(100f) * transforms[mesh.ParentBone.Index];
-                    effect.View = Matrix.CreateLookAt(Game1.CameraPosition,
-                        Game1.modelPosition, Game1.ModelRotation.Up);
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(
-                        MathHelper.ToRadians(45.0f), aspectRatio,
-                        1.0f, 100000000.0f);
-                    */
+                    effect.Alpha = 1f;
                     effect.LightingEnabled = false;
                     effect.TextureEnabled = true;
                     effect.Texture = skyboxTexture;
                     effect.World = Matrix.CreateScale(100f) * transforms[mesh.ParentBone.Index];
                     effect.View = Matrix.CreateLookAt(MathConverter.Convert(Game1.cameraPositionBepu),
-                        MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.modelRotationBepu.Up));
+                        MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.physCapsule.OrientationMatrix.Up));
                     effect.Projection = Matrix.CreatePerspectiveFieldOfView(
                         MathHelper.ToRadians(45.0f), aspectRatio,
                         1.0f, 100000000.0f);

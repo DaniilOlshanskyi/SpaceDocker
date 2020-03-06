@@ -12,11 +12,9 @@ namespace SpaceDocker
 {
     internal class Asteroid : DrawableGameComponent
     {
-        Vector3 modelPosition;
-        Matrix ModelRotation;
         private Model model;
         private Texture2D moonTexture;
-        private BEPUphysics.Entities.Prefabs.Sphere physicsObject;
+        private BEPUphysics.Entities.Prefabs.Box physicsObject;
         private Vector3 CurrentPosition
         {
             get
@@ -32,10 +30,10 @@ namespace SpaceDocker
 
         public Asteroid(Game game, Vector3 pos, string id) : this(game)
         {
-            physicsObject = new BEPUphysics.Entities.Prefabs.Sphere(MathConverter.Convert(pos), 1);
+            physicsObject = new BEPUphysics.Entities.Prefabs.Box(MathConverter.Convert(pos),1,1,1);
             physicsObject.AngularDamping = 0f;
             physicsObject.LinearDamping = 0f;
-            physicsObject.CollisionInformation.Events.InitialCollisionDetected += Events_InitialCollisionDetected;
+            //physicsObject.CollisionInformation.Events.InitialCollisionDetected += Events_InitialCollisionDetected;
             physicsObject.Tag = id;
             Game.Services.GetService<Space>().Add(physicsObject);
         }
@@ -69,7 +67,9 @@ namespace SpaceDocker
         {
             moonTexture = Game.Content.Load<Texture2D>("moonsurface");
             model = Game.Content.Load<Model>("moon");
-            physicsObject.Radius = model.Meshes[0].BoundingSphere.Radius;
+            physicsObject.Length = model.Meshes[0].BoundingSphere.Radius;
+            physicsObject.Width = model.Meshes[0].BoundingSphere.Radius;
+            physicsObject.Height = model.Meshes[0].BoundingSphere.Radius;
 
 
             base.LoadContent();
@@ -86,22 +86,10 @@ namespace SpaceDocker
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    /*
-                    effect.Alpha = 0.7f;
-                    //effect.EnableDefaultLighting();
+                    effect.Alpha = 1f;
                     effect.PreferPerPixelLighting = true;
                     effect.World = MathConverter.Convert(physicsObject.WorldTransform);
-                    effect.View = Matrix.CreateLookAt(Game1.CameraPosition, Game1.modelPosition, Game1.ModelRotation.Up);
-                    float aspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
-                    float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-                    float nearClipPlane = 1;
-                    float farClipPlane = 2000;
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(fieldOfView, aspectRatio, nearClipPlane, farClipPlane);
-                    */
-                    effect.Alpha = 0.7f;
-                    effect.PreferPerPixelLighting = true;
-                    effect.World = MathConverter.Convert(physicsObject.WorldTransform);
-                    effect.View = Matrix.CreateLookAt(MathConverter.Convert(Game1.cameraPositionBepu), MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.modelRotationBepu.Up));
+                    effect.View = Matrix.CreateLookAt(MathConverter.Convert(Game1.cameraPositionBepu), MathConverter.Convert(Game1.physCapsule.Position), MathConverter.Convert(Game1.physCapsule.OrientationMatrix.Up));
                     float aspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
                     float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
                     float nearClipPlane = 1;
